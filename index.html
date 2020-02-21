@@ -6,6 +6,11 @@
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script src="main.js"></script>
     <title>Exemplo VueJS usando HTML Clássico</title>
+    <style>
+        .red {
+            color: red
+        }
+    </style>
 </head>
 <body>
     <div id="form">
@@ -15,11 +20,13 @@
             <p>
                 <label>Username</label>
                 <input type="text" v-model="form.username">
+                <div v-if="isUsernameInvalid" class="red">{{ isUsernameInvalid }}</div>
             </p>
             
             <p>
                 <label>Senha</label>
                 <input type="password" v-model="form.password">
+                <div v-if="isPasswordInvalid" class="red">{{ isPasswordInvalid }}</div>
             </p>
             
             <p>
@@ -68,6 +75,12 @@
 
             <code>
                 {{ JSON.stringify(form, undefined, 2) }}
+            </code>
+
+            <br><br>
+
+            <code>
+                {{ JSON.stringify({ isUsernameInvalid }, undefined, 2) }}
             </code>
         </form>
     </div>

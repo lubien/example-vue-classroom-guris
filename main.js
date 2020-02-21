@@ -44,6 +44,24 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         },
 
+        computed: {
+            isUsernameInvalid() {
+                if (this.form.username.length > 4 && this.form.username.length < 21) {
+                    return false
+                }
+
+                return 'Usuario deve ter entre 5 e 20 caracteres'
+            },
+
+            isPasswordInvalid() {
+                if (this.form.password.length > 4 && this.form.password.length < 21) {
+                    return false
+                }
+
+                return 'Senha deve ter entre 5 e 20 caracteres'
+            }
+        },
+
         methods: {
         }
     })
