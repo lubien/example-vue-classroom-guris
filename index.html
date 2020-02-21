@@ -8,15 +8,79 @@
     <title>Exemplo VueJS usando HTML Clássico</title>
 </head>
 <body>
-    <div id="app">
+    <div id="form">
+        <form action="#">
+            <h2>Cadastro do usuario</h2>
+            
+            <p>
+                <label>Username</label>
+                <input type="text" v-model="form.username">
+            </p>
+            
+            <p>
+                <label>Senha</label>
+                <input type="password" v-model="form.password">
+            </p>
+            
+            <p>
+                <label>Email</label>
+                <input type="email" v-model="form.email">
+            </p>
+            
+            <p>
+                <label>Genero</label>
+                <select name="gender" v-model="form.gender">
+                    <option disabled value="-">Selecione um genero</option>
+                    <option value="M">Masculino</option>
+                    <option value="F">Feminino</option>
+                    <option value="?">Mano, tu eh?</option>
+                </select>
+            </p>
+            
+            <p>
+                <label>Plano</label><br>
+                <input type="checkbox" value="tv" v-model="form.plan">
+                <label>TV</label><br>
+                <input type="checkbox" value="fixed" v-model="form.plan">
+                <label>Fixo</label><br>
+                <input type="checkbox" value="netflix" v-model="form.plan">
+                <label>Netflix</label><br>
+                <input type="checkbox" value="bbb" v-model="form.plan">
+                <label>BBB 20 so as apimentadas</label><br>
+            </p>
+            
+            <p>
+                <label>Assinar newsletter da tv</label><br>
+                <div v-if="form.plan.includes('tv')">
+                    <input type="radio" name="sign" value="yes" v-model="form.sign">
+                    <label>Sim</label><br>
+                    <input type="radio" name="sign" value="no" v-model="form.sign">
+                    <label>Nao</label><br>
+                </div>
+                <span v-else>
+                    Assine o plano de TV para obter o newsletter
+                </span>
+            </p>
+            
+            <p>
+                <input type="submit" value="Cadastrar">
+            </p>
+
+            <code>
+                {{ JSON.stringify(form, undefined, 2) }}
+            </code>
+        </form>
+    </div>
+    
+    <div id="app" style="display: none;">
         <div :title="myTitle" :class="className">
             {{ atMostChars(message, 100) }}
         </div>
-
+        
         <input type="button" value="Fazer magia" @click="revertMessage">
-
+        
         <a :href="href">Conteudo</a>
-
+        
         <div v-if="role === 'admin'">
             Parabens voce eh admnistrador
         </div>
@@ -26,11 +90,11 @@
         <div v-else>
             Voce nao pode ver isto
         </div>
-
+        
         <ul>
             <li v-for="(task, i) in tasks" :key="i">[{{ i + 1 }}] {{ task.title }}</li>
         </ul>
-
+        
         <select>
             <option v-for="(task, i) in tasks" :key="i" :value="task.title">{{task.title}}</option>
         </select>
